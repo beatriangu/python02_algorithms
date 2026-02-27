@@ -1,62 +1,64 @@
 🧭 MAP.md — Python Garden · Data Guard
-Garden Guardian · Error Handling & Resilient Systems
+python02_data_guard — Error Handling & Resilient Systems
 
-Este documento es MI mapa de aprendizaje y diseño.
-Explica cómo evoluciona mi forma de pensar los errores a lo largo del
-módulo python02_data_guard.
+This document is my learning and design map.
+It explains how my understanding of error handling evolves throughout the python02_data_guard module.
 
-No describe solo qué hace el código, sino por qué se diseña así.
+It does not only describe what the code does —
+it explains why it is designed that way.
 
-🌱 Idea central del módulo
+🌱 Core Idea
 
-Pasar de:
+Move from:
 
-❌ “mi programa se rompe si algo falla”
-a
-✅ “mi programa espera fallos y los gestiona”
+❌ “My program crashes when something fails”
+to
+✅ “My program anticipates failures and manages them”
 
-Un sistema profesional:
+A professional system:
 
-detecta errores
+detects errors
 
-los clasifica
+classifies them
 
-los comunica
+communicates them clearly
 
-limpia recursos
+cleans resources
 
-continúa funcionando
+continues running
 
-El objetivo no es evitar errores, sino hacerlos manejables.
+The goal is not to avoid errors.
+The goal is to make them manageable.
 
 🟢 ex0 — Agricultural Data Validation Pipeline
+🎯 Focus
 
-Foco
-→ Primer contacto real con errores.
+→ First real contact with runtime errors.
 
-Aprendo
+🧠 I Learn
 
 try / except
 
-ValueError implícito
+Implicit ValueError
 
-Validación de datos externos (sensores / input)
+Validation of external data (sensors / input)
 
-Clave mental
-👉 Los datos que vienen de fuera no son fiables.
+🧩 Mental Model
 
-Prepara para
+External data is not reliable.
 
-No confiar ciegamente en input()
+🔗 Prepares For
 
-Empezar a pensar en fallos como algo normal
+Not trusting input() blindly
+
+Treating failure as normal, not exceptional
 
 🟢 ex1 — Different Types of Problems
+🎯 Focus
 
-Foco
-→ No todos los errores son iguales.
+→ Not all errors are the same.
 
-Aprendo
+🧠 I Learn
 
 ValueError
 
@@ -66,175 +68,173 @@ FileNotFoundError
 
 KeyError
 
-Captura múltiple de excepciones
+Multiple exception handling
 
-Clave mental
-👉 Python clasifica los errores por su naturaleza.
-👉 Capturar bien = entender el problema.
+🧩 Mental Model
 
-Depende de
+Python classifies errors by nature.
+Catching correctly means understanding the problem.
 
-try / except básico (ex0)
+🔗 Depends On
 
-Prepara para
+Basic try / except (ex0)
 
-Diseñar errores con significado propio
+🔗 Prepares For
 
-🟢 ex2 — Making Your Own Error Types
+Designing meaningful domain errors
 
-Foco
-→ Errores con significado de dominio.
+🟢 ex2 — Creating Custom Error Types
+🎯 Focus
 
-Aprendo
+→ Domain-specific error meaning.
 
-Crear clases de excepción
+🧠 I Learn
 
-Herencia entre errores
+Creating custom exception classes
 
-Captura por jerarquía
+Inheritance between exceptions
 
-Clave mental
-👉 No todo error es técnico.
-👉 Algunos errores pertenecen al dominio del problema.
+Catching by hierarchy
+
+🧩 Mental Model
+
+Not every error is technical.
+Some errors belong to the domain.
 
 GardenError
  ├── PlantError
  └── WaterError
+🔗 Depends On
 
+Understanding built-in exception types (ex1)
 
-Depende de
+🔗 Prepares For
 
-Comprender tipos de error (ex1)
+Large, structured systems
 
-Prepara para
+🟢 ex3 — The Finally Block: Always Clean Up
+🎯 Focus
 
-Sistemas grandes y organizados
+→ Cleanup must always happen.
 
-🟢 ex3 — Finally Block: Always Clean Up
-
-Foco
-→ Pase lo que pase, se limpia.
-
-Aprendo
+🧠 I Learn
 
 finally
 
-Limpieza garantizada
+Guaranteed cleanup
 
-Gestión consciente de recursos
+Conscious resource management
 
-Clave mental
-👉 El error puede ocurrir.
-👉 La limpieza no puede fallar.
+🧩 Mental Model
+
+Errors may happen.
+Cleanup must not fail.
 
 try
- ├── operación
+ ├── operation
 except
- ├── gestión del error
+ ├── error handling
 finally
- └── limpieza SIEMPRE
+ └── cleanup ALWAYS
+🔗 Depends On
 
+Solid try / except understanding (ex0–ex2)
 
-Depende de
+🔗 Prepares For
 
-try / except sólido (ex0–ex2)
-
-Prepara para
-
-Programas que no dejan el sistema roto
+Systems that leave no broken state
 
 🟢 ex4 — Raising Your Own Errors
+🎯 Focus
 
-Foco
-→ Detectar estados inválidos a propósito.
+→ Intentionally detecting invalid states.
 
-Aprendo
+🧠 I Learn
 
 raise
 
-Separar:
+Separating:
 
-detección del error
+error detection
 
-gestión del error
+error handling
 
-Mensajes claros y útiles
+Writing clear and useful error messages
 
-Clave mental
-👉 No todo error viene de Python.
-👉 A veces tu programa decide que algo está mal.
+🧩 Mental Model
 
-Depende de
+Not all errors come from Python.
+Sometimes your program decides something is wrong.
 
-Errores personalizados (ex2)
+🔗 Depends On
 
-Prepara para
+Custom exceptions (ex2)
 
-Sistemas con reglas claras y explícitas
+🔗 Prepares For
+
+Systems with explicit and enforceable rules
 
 🟢 ex5 — Garden Management System
+🎯 Focus
 
-Foco
-→ Sistema completo y resiliente.
+→ Building a complete resilient system.
 
-Integra
+🧠 Integrates
 
 try / except
 
-excepciones personalizadas
+Custom exceptions
 
 raise
 
 finally
 
-recuperación del sistema
+System recovery
 
-Clave final
-👉 El sistema:
+🧩 Final Insight
 
-falla
+The system:
 
-informa
+fails
 
-se recupera
+informs
 
-continúa
+recovers
 
-Arquitectura mental
+continues
 
+📐 Mental Architecture
 GardenManager
  ├── add_plant()
  ├── water_plants()
  │    └── try / except / finally
  ├── check_plant_health()
  │    └── raise ValueError
- └── manejo global de GardenError
+ └── global handling of GardenError
+🧠 Global Module Evolution
+ex0 → detect errors
+ex1 → classify them
+ex2 → name them
+ex3 → always clean up
+ex4 → raise intentionally
+ex5 → integrate everything
 
-🧠 Visión global del módulo
-ex0 → detectar errores
-ex1 → clasificarlos
-ex2 → nombrarlos
-ex3 → limpiar siempre
-ex4 → provocarlos bien
-ex5 → integrarlo todo
+These are not isolated exercises.
+They are training in resilience.
 
+🎯 Final Objective
 
-No son ejercicios sueltos.
-Es un entrenamiento de resiliencia.
+Be able to explain:
 
-🎯 Objetivo final
+what can fail
 
-Ser capaz de explicar:
+how it is detected
 
-qué puede fallar
+how it is communicated
 
-cómo se detecta
+how resources are cleaned
 
-cómo se comunica
+how the system stays alive
 
-cómo se limpia
-
-cómo el sistema sigue vivo
-
-Este MAP refleja mi arquitectura mental del módulo
-y mi forma de diseñar sistemas defensivos en Python.
+This MAP reflects my mental architecture of the module
+and how I design defensive systems in Python.
